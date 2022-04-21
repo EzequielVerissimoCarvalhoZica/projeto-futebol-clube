@@ -1,14 +1,17 @@
 import * as express from 'express';
+// import ControllerUser from './controller/ControllerUser';
+import { RouteLogin } from './route';
+import { error } from './middleware';
 
 class App {
   public app: express.Express;
-  // ...
+
+  RouteLogin = new RouteLogin();
 
   constructor() {
-    // ...
     this.app = express();
     this.config();
-    // ...
+    this.routes();
   }
 
   private config():void {
@@ -19,11 +22,15 @@ class App {
       next();
     };
 
+    this.app.use(express.json());
     this.app.use(accessControl);
-    // ...
   }
 
-  // ...
+  private routes() {
+    this.app.use('/login', this.RouteLogin.router);
+    this.app.use(error);
+  }
+
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`server is running on PORT: ${PORT}`));
   }

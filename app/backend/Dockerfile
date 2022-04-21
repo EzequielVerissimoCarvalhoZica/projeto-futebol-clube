@@ -4,9 +4,7 @@ WORKDIR /home/static
 
 COPY package*.json /
 
-RUN npm install && adduser -D static
-
-USER static
+RUN npm install
 
 COPY . .
 

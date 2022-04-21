@@ -2,7 +2,7 @@ import BadRequest from './BadRequest';
 import Conflict from './Conflict';
 import NotFound from './NotFound';
 
-// Para essas classes de erro usei como referência este artigo do Matheus Santos T15B 'https://dev.to/matheusg18/testes-de-integracao-para-api-com-typescript-mocha-chai-e-sinon-3np9'
+// Para essas classes de erro usei como referência este artigo https://wanago.io/2018/12/17/typescript-express-error-handling-validation/
 
 export {
   BadRequest,

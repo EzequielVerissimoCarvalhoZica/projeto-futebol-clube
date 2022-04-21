@@ -1,10 +1,10 @@
 import { ErrorRequestHandler } from 'express';
-import HttpError from '../helper/error/HttpError';
+import HttpException from '../helper/error/HttpException';
 
 const error: ErrorRequestHandler = (err, req, res, _next) => {
-  if (err instanceof HttpError) {
+  if (err instanceof HttpException) {
     const { httpCode, message } = err;
-    console.log('feio');
+
     return res.status(httpCode).json({ message });
   }
 

@@ -1,6 +1,6 @@
-import HttpError from './HttpError';
+import HttpException from './HttpException';
 
-export default class BadRequest extends HttpError {
+export default class BadRequest extends HttpException {
   public httpCode: number;
 
   public name: string;

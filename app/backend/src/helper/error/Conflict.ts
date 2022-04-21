@@ -1,6 +1,6 @@
-import HttpError from './HttpError';
+import HttpException from './HttpException';
 
-export default class Conflict extends HttpError {
+export default class Conflict extends HttpException {
   public httpCode: number;
 
   public name: string;

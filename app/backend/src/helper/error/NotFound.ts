@@ -1,6 +1,6 @@
-import HttpError from './HttpError';
+import HttpException from './HttpException';
 
-export default class NotFound extends HttpError {
+export default class NotFound extends HttpException {
   public httpCode: number;
 
   public name: string;

@@ -1,4 +1,5 @@
 import * as express from 'express';
+import 'express-async-errors';
 // import ControllerUser from './controller/ControllerUser';
 import { RouteLogin } from './route';
 import { error } from './middleware';

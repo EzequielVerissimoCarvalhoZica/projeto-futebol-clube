@@ -19,5 +19,9 @@ export default class RouteLogin implements Teste {
     this.router
       .route('/')
       .post(validateLogin, this.ControllerLogin.login);
+
+    this.router
+      .route('/validate')
+      .get();
   };
 }

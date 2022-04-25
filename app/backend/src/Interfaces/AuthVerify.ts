@@ -1,6 +1,6 @@
 import IUser from './User';
 
-export default interface AuthVerify {
+export default interface IAuthVerify {
   data: IUser;
   iat: number,
   exp: number

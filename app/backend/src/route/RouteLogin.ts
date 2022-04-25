@@ -1,5 +1,6 @@
 import * as express from 'express';
-import { BadRequest } from '../helper/error';
+import validateLogin from '../middleware/validateLogin';
+import { ControllerLogin } from '../controller';
 
 interface Teste {
   intializeRoutes: () => void;
@@ -8,6 +9,8 @@ interface Teste {
 export default class RouteLogin implements Teste {
   public router = express.Router();
 
+  ControllerLogin = new ControllerLogin();
+
   constructor() {
     this.intializeRoutes();
   }
@@ -15,11 +18,6 @@ export default class RouteLogin implements Teste {
   intializeRoutes = () => {
     this.router
       .route('/')
-      .post((req, res, next) => {
-        const { email } = req.body;
-        if (!email) return next(new BadRequest('email is required'));
-
-        return res.send('tudo certo');
-      });
+      .post(validateLogin, this.ControllerLogin.login);
   };
 }

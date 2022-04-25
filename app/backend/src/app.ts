@@ -27,7 +27,7 @@ class App {
   }
 
   private routes() {
-    // this.app.use('/login', this.RouteLogin.router);
+    this.app.use('/login', this.RouteLogin.router);
     this.app.use(error);
   }
 

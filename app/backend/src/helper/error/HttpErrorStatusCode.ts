@@ -1,14 +1,11 @@
 import HttpException from './HttpException';
 
-export default class BadRequest extends HttpException {
-  public httpCode: number;
-
-  public name: string;
+export default class HttpErrorStatusCode extends HttpException {
+  protected httpCode: number;
 
   constructor(message: string, httpCode = 400) {
     super(message);
 
     this.httpCode = httpCode;
-    this.name = 'BadRequest';
   }
 }

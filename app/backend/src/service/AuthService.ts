@@ -20,6 +20,7 @@ export default class AuthService {
     };
 
     const isValidPass = await compare(pass, user.password);
+    // const isValidPass = user.password === pass;
 
     if (!isValidPass) return null;
 

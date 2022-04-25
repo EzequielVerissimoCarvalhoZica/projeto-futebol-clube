@@ -8,7 +8,7 @@ export default class ControllerLogin {
 
     const result = await AuthService.auth(email, password);
 
-    if (!result) return next(new HttpErrorStatusCode('Error Login: email or password wrong'));
+    if (!result) return next(new HttpErrorStatusCode('Incorrect email or password', 401));
 
     return res.status(200).json(result);
   };

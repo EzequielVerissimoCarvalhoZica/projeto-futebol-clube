@@ -1,14 +1,16 @@
 import Joi = require('joi');
 
+const response = 'All fields must be filled';
+
 export default Joi.object({
   email: Joi.string().email().required().messages({
-    'string.email': '422|Incorrect email',
-    'any.required': '400|Email is required',
-    'string.empty': '422|Email cannot be empty',
+    'any.required': `400|${response}`,
+    'string.empty': `400|${response}`,
+    'string.email': '401|Incorrect email or password',
   }),
   password: Joi.string().min(4).required().messages({
-    'string.min': '422|"password" length must be at least 4 characters long',
-    'any.required': '400|Password is required',
-    'string.empty': '422|Password cannot be empty',
+    'any.required': `400|${response}`,
+    'string.empty': `400|${response}`,
+    'string.min': '401|Incorrect email or password',
   }),
 });

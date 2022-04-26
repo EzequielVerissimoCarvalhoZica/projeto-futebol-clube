@@ -1,7 +1,6 @@
 import * as express from 'express';
-import validateLogin from '../middleware/validateLogin';
+import { validateLogin, Auth } from '../middleware';
 import { ControllerLogin } from '../controller';
-import Auth from '../middleware/Auth';
 
 interface Teste {
   intializeRoutes: () => void;

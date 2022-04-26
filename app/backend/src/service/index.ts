@@ -1,8 +1,7 @@
-import ServiceUser from './ServiceLogin';
-
-const uai = '';
+import ServiceLogin from './ServiceLogin';
+import AuthService from './AuthService';
 
 export {
-  ServiceUser,
-  uai,
+  ServiceLogin,
+  AuthService,
 };

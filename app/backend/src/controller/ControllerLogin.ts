@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpErrorStatusCode } from '../helper';
-import AuthService from '../service/AuthService';
+import { AuthService } from '../service';
 
 export default class ControllerLogin {
   private _AuthService = new AuthService();

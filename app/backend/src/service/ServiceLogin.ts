@@ -1,3 +1,3 @@
-export default class ServiceUser {
+export default class ServiceLogin {
 
 }

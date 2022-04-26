@@ -1,8 +1,9 @@
 import error from './error';
-
-const uai = '';
+import validateLogin from './validateLogin';
+import Auth from './Auth';
 
 export {
   error,
-  uai,
+  validateLogin,
+  Auth,
 };

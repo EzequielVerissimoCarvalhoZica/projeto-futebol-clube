@@ -2,8 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import { readFile } from 'fs/promises';
 import { compare } from 'bcryptjs';
 import User from '../database/models/User';
-import IAuth from '../Interfaces/Auth';
-import IAuthVerify from '../Interfaces/AuthVerify';
+import { IAuth, IAuthVerify } from '../Interfaces';
 
 export default class AuthService {
   private _secret: string;

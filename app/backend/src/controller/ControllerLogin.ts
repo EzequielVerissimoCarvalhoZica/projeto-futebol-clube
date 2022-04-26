@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { IRequest } from '../Interfaces';
 import { HttpErrorStatusCode } from '../helper';
 import { AuthService } from '../service';
 
@@ -15,5 +16,5 @@ export default class ControllerLogin {
     return res.status(200).json(result);
   };
 
-  validate = (req: Request, res: Response) => res.status(200).send(req.role);
+  validate = (req: IRequest, res: Response) => res.status(200).send(req.role);
 }

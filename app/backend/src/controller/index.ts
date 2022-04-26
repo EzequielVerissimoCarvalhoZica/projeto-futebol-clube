@@ -1,8 +1,7 @@
 import ControllerLogin from './ControllerLogin';
-
-const uai = '';
+import ControllerTeams from './ControllerTeams';
 
 export {
   ControllerLogin,
-  uai,
+  ControllerTeams,
 };

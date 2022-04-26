@@ -26,7 +26,7 @@ class App {
 
   private _controllerMatches = new ControllerMatches(this._serviceMatches);
 
-  private _routeMatches = new RouteMatches(this._controllerMatches);
+  private _routeMatches = new RouteMatches(this._controllerMatches, this._auth);
 
   constructor() {
     this.app = express();

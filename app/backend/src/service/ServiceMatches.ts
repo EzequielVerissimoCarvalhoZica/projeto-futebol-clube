@@ -1,5 +1,6 @@
 import Team from '../database/models/Team';
 import Match from '../database/models/Match';
+import { IMatch } from '../Interfaces';
 
 export default class ServiceMatches {
   public findAll = async () => {
@@ -27,5 +28,23 @@ export default class ServiceMatches {
     });
 
     return matches;
+  };
+
+  public create = async (
+    { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress }: IMatch,
+  ): Promise<IMatch> => {
+    const match = await Match
+      .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
+
+    return match;
+  };
+
+  public finishMatch = async (id: number) => {
+    const match = await Match.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+
+    return match;
   };
 }

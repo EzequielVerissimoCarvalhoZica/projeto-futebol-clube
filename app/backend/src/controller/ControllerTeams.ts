@@ -11,8 +11,10 @@ export default class ControllerTeams {
   };
 
   public findOne = async (req: Request, res: Response) => {
-    const teams = await this._ServiceTeams.findOne();
+    const { id } = req.params;
 
-    return res.status(200).json(teams);
+    const team = await this._ServiceTeams.findOne(Number(id));
+
+    return res.status(200).json(team);
   };
 }

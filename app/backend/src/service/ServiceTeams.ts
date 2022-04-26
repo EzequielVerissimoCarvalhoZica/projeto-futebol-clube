@@ -8,9 +8,9 @@ export default class ServiceTeams {
     return teams;
   };
 
-  public findOne = async () => {
-    const teams = Team.findByPk();
+  public findOne = async (id: number): Promise<ITeam | null> => {
+    const team = Team.findByPk(id);
 
-    return teams;
+    return team;
   };
 }

@@ -1,9 +1,9 @@
 import * as express from 'express';
 import 'express-async-errors';
-import { RouteLogin, RouteTeams } from './route';
+import { RouteLogin, RouteMatches, RouteTeams } from './route';
 import { Auth, error } from './middleware';
-import { ControllerLogin, ControllerTeams } from './controller';
-import { AuthService, ServiceTeams } from './service';
+import { ControllerLogin, ControllerMatches, ControllerTeams } from './controller';
+import { AuthService, ServiceMatches, ServiceTeams } from './service';
 
 class App {
   public app: express.Express;
@@ -21,6 +21,12 @@ class App {
   private _controllerTeams = new ControllerTeams(this._serviceTeams);
 
   private _routeTeams = new RouteTeams(this._controllerTeams);
+
+  private _serviceMatches = new ServiceMatches();
+
+  private _controllerMatches = new ControllerMatches(this._serviceMatches);
+
+  private _routeMatches = new RouteMatches(this._controllerMatches);
 
   constructor() {
     this.app = express();
@@ -43,6 +49,7 @@ class App {
   private routes() {
     this.app.use('/login', this._routeLogin.router);
     this.app.use('/teams', this._routeTeams.router);
+    this.app.use('/matches', this._routeMatches.router);
     this.app.use(error);
   }
 

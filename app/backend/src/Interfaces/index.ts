@@ -3,6 +3,7 @@ import IAuthVerify from './AuthVerify';
 import IUser from './User';
 import ITeam from './Team';
 import IRequest from './Request';
+import IMatch from './Match';
 
 export {
   IAuth,
@@ -10,4 +11,5 @@ export {
   IUser,
   ITeam,
   IRequest,
+  IMatch,
 };

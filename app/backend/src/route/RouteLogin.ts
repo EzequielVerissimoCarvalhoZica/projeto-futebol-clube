@@ -1,6 +1,7 @@
 import * as express from 'express';
-import { validateLogin, Auth } from '../middleware';
+import validateLogin from '../middleware/validateLogin';
 import { ControllerLogin } from '../controller';
+import Auth from '../middleware/Auth';
 
 interface Teste {
   intializeRoutes: () => void;
@@ -9,21 +10,17 @@ interface Teste {
 export default class RouteLogin implements Teste {
   public router = express.Router();
 
-  ControllerLogin = new ControllerLogin();
-
-  Auth = new Auth();
-
-  constructor() {
+  constructor(private _ControllerLogin: ControllerLogin, private _Auth: Auth) {
     this.intializeRoutes();
   }
 
   intializeRoutes = () => {
     this.router
       .route('/')
-      .post(validateLogin, this.ControllerLogin.login);
+      .post(validateLogin, this._ControllerLogin.login);
 
     this.router
       .route('/validate')
-      .get(this.Auth.auth, this.ControllerLogin.validate);
+      .get(this._Auth.auth, this._ControllerLogin.validate);
   };
 }

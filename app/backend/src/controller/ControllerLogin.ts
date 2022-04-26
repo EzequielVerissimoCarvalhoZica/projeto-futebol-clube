@@ -3,7 +3,7 @@ import { HttpErrorStatusCode } from '../helper';
 import { AuthService } from '../service';
 
 export default class ControllerLogin {
-  private _AuthService = new AuthService();
+  constructor(private _AuthService: AuthService) {}
 
   login = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;

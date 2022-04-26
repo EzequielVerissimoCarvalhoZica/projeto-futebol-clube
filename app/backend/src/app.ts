@@ -1,12 +1,20 @@
 import * as express from 'express';
 import 'express-async-errors';
 import { RouteLogin } from './route';
-import { error } from './middleware';
+import { Auth, error } from './middleware';
+import { ControllerLogin } from './controller';
+import { AuthService } from './service';
 
 class App {
   public app: express.Express;
 
-  RouteLogin = new RouteLogin();
+  private _authService = new AuthService();
+
+  private _auth = new Auth(this._authService);
+
+  private _controllerLogin = new ControllerLogin(this._authService);
+
+  private _routeLogin = new RouteLogin(this._controllerLogin, this._auth);
 
   constructor() {
     this.app = express();
@@ -27,7 +35,7 @@ class App {
   }
 
   private routes() {
-    this.app.use('/login', this.RouteLogin.router);
+    this.app.use('/login', this._routeLogin.router);
     this.app.use(error);
   }
 

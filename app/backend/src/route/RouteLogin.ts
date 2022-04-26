@@ -3,11 +3,7 @@ import validateLogin from '../middleware/validateLogin';
 import { ControllerLogin } from '../controller';
 import Auth from '../middleware/Auth';
 
-interface Teste {
-  intializeRoutes: () => void;
-}
-
-export default class RouteLogin implements Teste {
+export default class RouteLogin {
   public router = express.Router();
 
   constructor(private _ControllerLogin: ControllerLogin, private _Auth: Auth) {

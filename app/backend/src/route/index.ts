@@ -1,8 +1,7 @@
 import RouteLogin from './RouteLogin';
-
-const uai = '';
+import RouteTeams from './RouteTeams';
 
 export {
   RouteLogin,
-  uai,
+  RouteTeams,
 };

@@ -32,7 +32,12 @@ export default class ServiceMatches {
 
   public create = async (
     { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress }: IMatch,
-  ): Promise<IMatch> => {
+  ): Promise<IMatch | null> => {
+    const firtTeam = await Team.findByPk(homeTeam);
+    const secondTeam = await Team.findByPk(awayTeam);
+
+    if (!firtTeam || !secondTeam) return null;
+
     const match = await Match
       .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
 

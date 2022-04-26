@@ -20,12 +20,14 @@ export default class ControllerMatches {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress } = req.body;
 
     if (homeTeam === awayTeam) {
-      return res.status(400)
+      return res.status(401)
         .json({ message: 'It is not possible to create a match with two equal teams' });
     }
 
     const match = await this._ServiceMatches
       .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
+
+    if (!match) return res.status(404).json({ message: 'There is no team with such id!' });
 
     return res.status(201).json(match);
   };
@@ -35,7 +37,7 @@ export default class ControllerMatches {
 
     const match = await this._ServiceMatches.finishMatch(Number(id));
 
-    if (match[0] === 1) {
+    if (match) {
       return res.status(200).json({ message: 'The referee ends the match successfully' });
     }
 

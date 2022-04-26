@@ -16,7 +16,7 @@ export default class RouteMatches {
       .post(this._Auth.auth, this._ControllerMatches.create);
 
     this.router
-      .route('/matches/:id/finish')
+      .route('/:id/finish')
       .patch(this._ControllerMatches.finishMatch);
   };
 }

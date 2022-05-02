@@ -4,8 +4,9 @@ import chaiHttp = require('chai-http');
 
 import Team from '../database/models/Team';
 import User from '../database/models/User';
-import { ServiceTeams, AuthService } from '../service';
+import { ServiceTeams, AuthService, ServiceMatches } from '../service';
 import * as jwt from 'jsonwebtoken';
+import Match from '../database/models/Match';
 
 chai.use(chaiHttp);
 
@@ -110,6 +111,40 @@ describe('Services', () => {
         const response = authService.verify("wrong token")
     
         expect(response).to.be.false;
+      });
+    });
+  });
+
+  describe('ServiceMatches', () => {
+    const serviceMatches = new ServiceMatches();
+
+    describe('findAll', () => {
+      const matchesMock = [{
+        "id": 42,
+        "homeTeam": 6,
+        "homeTeamGoals": 3,
+        "awayTeam": 1,
+        "awayTeamGoals": 1,
+        "inProgress": true,
+        "teamHome": {
+          "teamName": "Ferroviária"
+        },
+        "teamAway": {
+          "teamName": "Avaí/Kindermann"
+        }
+      }];
+  
+      before(async () => {
+        sinon.stub(Match, "findAll").resolves(matchesMock as unknown as Match[]);
+      });
+  
+      after(() => {
+        (Match.findAll as sinon.SinonStub).restore();
+      })
+
+      it('list all matches', async() => {
+        const response = await serviceMatches.findAll();
+        expect(response).to.deep.eq(matchesMock);
       });
     });
   });

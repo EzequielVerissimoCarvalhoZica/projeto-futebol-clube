@@ -18,5 +18,9 @@ export default class RouteMatches {
     this.router
       .route('/:id/finish')
       .patch(this._ControllerMatches.finishMatch);
+
+    this.router
+      .route('/:id')
+      .patch(this._ControllerMatches.update);
   };
 }

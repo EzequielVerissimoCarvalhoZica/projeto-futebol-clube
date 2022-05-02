@@ -43,4 +43,17 @@ export default class ControllerMatches {
 
     return res.status(400).json({ message: 'Error in end match' });
   };
+
+  public update = async (req: Request, res: Response) => {
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    const { id } = req.params;
+
+    const match = await this._ServiceMatches
+      .update(Number(id), Number(homeTeamGoals), Number(awayTeamGoals));
+
+    if (match) {
+      return res.status(200).json({ message: 'Match updated' });
+    }
+    return res.status(400).json({ message: 'Error in update match' });
+  };
 }

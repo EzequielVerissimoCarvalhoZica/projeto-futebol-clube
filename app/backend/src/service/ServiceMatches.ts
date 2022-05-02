@@ -52,4 +52,13 @@ export default class ServiceMatches {
 
     return match;
   };
+
+  public update = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
+    const match = await Match.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+
+    return match;
+  };
 }

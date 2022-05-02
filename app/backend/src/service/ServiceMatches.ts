@@ -3,7 +3,7 @@ import Match from '../database/models/Match';
 import { IMatch } from '../Interfaces';
 
 export default class ServiceMatches {
-  public findAll = async () => {
+  public static findAll = async () => {
     const matches = await Match.findAll({
       include:
       [
@@ -15,7 +15,7 @@ export default class ServiceMatches {
     return matches;
   };
 
-  public findAllFilter = async (inProgress: 'true' | 'false') => {
+  public static findAllFilter = async (inProgress: 'true' | 'false') => {
     const bool = inProgress === 'true';
 
     const matches = await Match.findAll({
@@ -30,7 +30,7 @@ export default class ServiceMatches {
     return matches;
   };
 
-  public create = async (
+  public static create = async (
     { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress }: IMatch,
   ): Promise<IMatch | null> => {
     const firtTeam = await Team.findByPk(homeTeam);
@@ -44,7 +44,7 @@ export default class ServiceMatches {
     return match;
   };
 
-  public finishMatch = async (id: number) => {
+  public static finishMatch = async (id: number) => {
     const match = await Match.update(
       { inProgress: false },
       { where: { id } },
@@ -53,7 +53,7 @@ export default class ServiceMatches {
     return match;
   };
 
-  public update = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
+  public static update = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
     const match = await Match.update(
       { homeTeamGoals, awayTeamGoals },
       { where: { id } },

@@ -2,17 +2,15 @@ import { Request, Response } from 'express';
 import { ServiceMatches } from '../service';
 
 export default class ControllerMatches {
-  constructor(private _ServiceMatches: ServiceMatches) {}
-
   public findAll = async (req: Request, res: Response) => {
     const { inProgress } = req.query;
 
     if (inProgress === 'false' || inProgress === 'true') {
-      const matches = await this._ServiceMatches.findAllFilter(inProgress);
+      const matches = await ServiceMatches.findAllFilter(inProgress);
       return res.status(200).json(matches);
     }
 
-    const matches = await this._ServiceMatches.findAll();
+    const matches = await ServiceMatches.findAll();
     return res.status(200).json(matches);
   };
 
@@ -24,7 +22,7 @@ export default class ControllerMatches {
         .json({ message: 'It is not possible to create a match with two equal teams' });
     }
 
-    const match = await this._ServiceMatches
+    const match = await ServiceMatches
       .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
 
     if (!match) return res.status(404).json({ message: 'There is no team with such id!' });
@@ -35,7 +33,7 @@ export default class ControllerMatches {
   public finishMatch = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const match = await this._ServiceMatches.finishMatch(Number(id));
+    const match = await ServiceMatches.finishMatch(Number(id));
 
     if (match) {
       return res.status(200).json({ message: 'The referee ends the match successfully' });
@@ -48,7 +46,7 @@ export default class ControllerMatches {
     const { homeTeamGoals, awayTeamGoals } = req.body;
     const { id } = req.params;
 
-    const match = await this._ServiceMatches
+    const match = await ServiceMatches
       .update(Number(id), Number(homeTeamGoals), Number(awayTeamGoals));
 
     if (match) {

@@ -116,8 +116,6 @@ describe('Services', () => {
   });
 
   describe('ServiceMatches', () => {
-    const serviceMatches = new ServiceMatches();
-
     describe('findAll', () => {
       const matchesMock = [{
         "id": 42,
@@ -143,7 +141,7 @@ describe('Services', () => {
       })
 
       it('list all matches', async() => {
-        const response = await serviceMatches.findAll();
+        const response = await ServiceMatches.findAll();
         expect(response).to.deep.eq(matchesMock);
       });
     });

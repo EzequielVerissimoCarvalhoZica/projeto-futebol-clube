@@ -4,6 +4,7 @@ import IUser from './User';
 import ITeam from './Team';
 import IRequest from './Request';
 import IMatch from './Match';
+import ITeamStatistic from './TeamStatistic';
 
 export {
   IAuth,
@@ -12,4 +13,5 @@ export {
   ITeam,
   IRequest,
   IMatch,
+  ITeamStatistic,
 };
